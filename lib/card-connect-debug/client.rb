@@ -26,10 +26,12 @@ CardConnect::Client.class_eval do
 
   def raise_test_error?(command)
     case command.amount
-    when "5.21", "7.5"
+    when "5.21"
       raise Faraday::Error::ConnectionFailed, "Simulated Connection Failure"
-    when "5.22", "7.83"
+    when "5.22"
       raise Faraday::Error::TimeoutError
+    when "5.03"  #Timeout
+      sleep 30
     else
       return
     end
